@@ -9,7 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 import iut.clermont.pm.ringcheck.ui.mainringchek.MainRingChekFragment
 import kotlinx.android.synthetic.main.main_ring_chek_activity.*
 
-class MainRingChekActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +18,7 @@ class MainRingChekActivity : AppCompatActivity() {
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+                .setAction("Action", null).show()
 
         }
 //        if (savedInstanceState == null) {

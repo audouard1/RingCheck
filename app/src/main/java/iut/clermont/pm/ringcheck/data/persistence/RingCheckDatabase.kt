@@ -2,15 +2,23 @@ package iut.clermont.pm.ringcheck.data.persistence
 
 import android.app.Application
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
+import iut.clermont.pm.ringcheck.data.model.Alarm
+import iut.clermont.pm.ringcheck.worker.SeedDatabaseWorker
 import java.lang.IllegalArgumentException
 import java.lang.RuntimeException
 
+
+@Database(entities = [Alarm::class], version = 1, exportSchema = false)
 abstract class RingCheckDatabase : RoomDatabase() {
+
+    abstract fun alarmDao(): AlarmDao
 
     companion object {
         @Volatile private var instance: RingCheckDatabase? = null
@@ -24,12 +32,12 @@ abstract class RingCheckDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(): RingCheckDatabase {
-            return Room.databaseBuilder(appContext!!.applicationContext, RingCheckDatabase::class.java, "")//DATABASE_NAME
+            return Room.databaseBuilder(appContext!!.applicationContext, RingCheckDatabase::class.java, "RingCheckDB")//DATABASE_NAME
                 .addCallback(object : RoomDatabase.Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
-                        //val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
-                        //WorkManager.getInstance().enqueue(request)
+                        val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
+                        WorkManager.getInstance().enqueue(request)
                     }
                 })
                 .build()
