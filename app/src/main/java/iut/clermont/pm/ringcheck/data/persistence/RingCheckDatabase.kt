@@ -16,6 +16,7 @@ import java.lang.RuntimeException
 
 
 @Database(entities = [Alarm::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class RingCheckDatabase : RoomDatabase() {
 
     abstract fun alarmDao(): AlarmDao

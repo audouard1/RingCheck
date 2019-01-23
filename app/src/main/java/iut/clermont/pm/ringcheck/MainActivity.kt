@@ -5,11 +5,16 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
 import iut.clermont.pm.ringcheck.ui.mainringchek.MainRingChekFragment
 import kotlinx.android.synthetic.main.main_ring_chek_activity.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var navController: NavController
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,11 +26,7 @@ class MainActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
 
         }
-//        if (savedInstanceState == null) {
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.id.container, MainRingChekFragment.newInstance())
-//                .commitNow()
-//        }
+        navController = Navigation.findNavController(this, R.id.mainFrag)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
