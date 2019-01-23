@@ -1,18 +1,19 @@
 package iut.clermont.pm.ringcheck.data.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 import java.time.LocalDateTime
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 @Entity(tableName = "alarms")
 data class Alarm (
-    @PrimaryKey @ColumnInfo(name = "id") val alarmId: Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "alarm_id") val alarmId: Int,
     var name: String,
     var dateStart: Date,
     var endData: Date
-)
 
+) {
+    @Ignore
+    lateinit var checkElems: List<CheckElem>
+}

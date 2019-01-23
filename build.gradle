@@ -29,6 +29,7 @@ buildscript {
         uiAutomatorVersion = '2.2.0-alpha4'
         workVersion = '1.0.0-beta01'
         projectVersion = '1.0.0'
+        threetenabpVersion = '1.1.1'
     }
 
     repositories {

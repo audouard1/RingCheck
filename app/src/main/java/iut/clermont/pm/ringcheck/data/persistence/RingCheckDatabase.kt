@@ -10,12 +10,13 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import iut.clermont.pm.ringcheck.data.model.Alarm
+import iut.clermont.pm.ringcheck.data.model.CheckElem
 import iut.clermont.pm.ringcheck.worker.SeedDatabaseWorker
 import java.lang.IllegalArgumentException
 import java.lang.RuntimeException
 
 
-@Database(entities = [Alarm::class], version = 1, exportSchema = false)
+@Database(entities = [Alarm::class, CheckElem::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class RingCheckDatabase : RoomDatabase() {
 
