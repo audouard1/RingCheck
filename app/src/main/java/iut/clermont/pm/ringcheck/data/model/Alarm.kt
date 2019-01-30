@@ -10,7 +10,7 @@ import kotlin.collections.ArrayList
 data class Alarm (
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "alarm_id") val alarmId: Int,
     var name: String,
-    var dateStart: Date,
+    var startDate: Date,
     var endData: Date
 
 ) {

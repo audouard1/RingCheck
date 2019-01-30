@@ -14,13 +14,13 @@ class SeedDatabaseWorker(context: Context, workerParams: WorkerParameters) : Wor
     private val TAG by lazy { SeedDatabaseWorker::class.java.simpleName }
 
     override fun doWork(): Result {
-        val plantType = object : TypeToken<List<Alarm>>() {}.type
+        val alarmType = object : TypeToken<List<Alarm>>() {}.type
         var jsonReader: JsonReader? = null
 
         return try {
-            val inputStream = applicationContext.assets.open("RingCheckDB")
+            val inputStream = applicationContext.assets.open("alarms.json")
             jsonReader = JsonReader(inputStream.reader())
-            val alarmList: List<Alarm> = Gson().fromJson(jsonReader, plantType)
+            val alarmList: List<Alarm> = Gson().fromJson(jsonReader, alarmType)
             val database = RingCheckDatabase.getInstance()
             database.alarmDao().insertAll(alarmList)
             Result.success()

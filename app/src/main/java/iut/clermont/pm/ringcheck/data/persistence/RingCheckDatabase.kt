@@ -38,14 +38,15 @@ abstract class RingCheckDatabase : RoomDatabase() {
                 .addCallback(object : RoomDatabase.Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
-                        val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
-                        WorkManager.getInstance().enqueue(request)
+                        //val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
+                        //WorkManager.getInstance().enqueue(request)
                     }
                 })
+                .allowMainThreadQueries()
                 .build()
         }
 
-        @Synchronized public fun setAppContext(appContext: Application){
+        @Synchronized fun setAppContext(appContext: Application){
             if(this.appContext == null){
                 this.appContext = appContext
             }
