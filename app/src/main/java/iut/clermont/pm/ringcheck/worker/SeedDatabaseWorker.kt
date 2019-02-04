@@ -9,18 +9,23 @@ import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import iut.clermont.pm.ringcheck.data.model.Alarm
 import iut.clermont.pm.ringcheck.data.persistence.RingCheckDatabase
+import java.util.*
 
 class SeedDatabaseWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
     private val TAG by lazy { SeedDatabaseWorker::class.java.simpleName }
 
     override fun doWork(): Result {
-        val alarmType = object : TypeToken<List<Alarm>>() {}.type
+        val pairType = object : TypeToken<List<AlarmDTO>>() {}.type
         var jsonReader: JsonReader? = null
 
         return try {
             val inputStream = applicationContext.assets.open("alarms.json")
+            var alarmList = ArrayList<Alarm>()
             jsonReader = JsonReader(inputStream.reader())
-            val alarmList: List<Alarm> = Gson().fromJson(jsonReader, alarmType)
+            var c: List<AlarmDTO> =  Gson().fromJson(jsonReader, pairType)
+            for( d in c){
+                alarmList.add(Alarm(d.alarmId, d.name, Date(), Date()))
+            }
             val database = RingCheckDatabase.getInstance()
             database.alarmDao().insertAll(alarmList)
             Result.success()

@@ -1,15 +1,10 @@
 [
   {
     "alarmId": "1",
-    "name": "Apple",
-    "startDate" : 0,
-    "endDate" : 0
+    "name": "Apple"
   },
   {
     "alarmId": "2",
-    "name": "defzefzefz",
-    "startDate" : 0,
-    "endDate" : 0
+    "name": "defzefzefz"
   }
-
 ]

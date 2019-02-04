@@ -1,7 +1,6 @@
 package iut.clermont.pm.ringcheck.data.persistence
 
 import android.app.Application
-import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -12,7 +11,6 @@ import androidx.work.WorkManager
 import iut.clermont.pm.ringcheck.data.model.Alarm
 import iut.clermont.pm.ringcheck.data.model.CheckElem
 import iut.clermont.pm.ringcheck.worker.SeedDatabaseWorker
-import java.lang.IllegalArgumentException
 import java.lang.RuntimeException
 
 
@@ -38,8 +36,8 @@ abstract class RingCheckDatabase : RoomDatabase() {
                 .addCallback(object : RoomDatabase.Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
-                        //val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
-                        //WorkManager.getInstance().enqueue(request)
+                        val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
+                        WorkManager.getInstance().enqueue(request)
                     }
                 })
                 .allowMainThreadQueries()
