@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.mainringchek.AddRingCheckFragment" android:orientation="vertical">
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" android:gravity="center">
+        <TextView
+                android:text="@string/titleAlarm"
+                android:layout_width="@dimen/padLeft"
+                android:layout_height="wrap_content" android:id="@+id/nameAlarm" android:layout_weight="1"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="@string/titleAlarm"
+                android:ems="10"
+                android:id="@+id/inputNameAlarm" android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" android:gravity="center">
+        <TextView
+                android:text="@string/dateAlarm"
+                android:layout_width="@dimen/padLeft"
+                android:layout_height="wrap_content" android:id="@+id/dateAlarm" android:layout_weight="1"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/inputDate" android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" android:gravity="center">
+        <TextView
+                android:text="@string/startAlarm"
+                android:layout_width="@dimen/padLeft"
+                android:layout_height="wrap_content" android:id="@+id/startAlarm" android:layout_weight="1"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/inputStartAlarm" android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" android:gravity="center">
+        <TextView
+                android:text="@string/endAlarm"
+                android:layout_width="@dimen/padLeft"
+                android:layout_height="wrap_content" android:id="@+id/endAlarm" android:layout_weight="1"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/inputEndAlarm" android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>

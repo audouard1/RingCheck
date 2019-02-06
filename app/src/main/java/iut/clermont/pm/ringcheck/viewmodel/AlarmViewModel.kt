@@ -1,4 +1,4 @@
-package iut.clermont.pm.ringcheck.viewModel
+package iut.clermont.pm.ringcheck.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

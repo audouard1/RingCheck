@@ -6,6 +6,12 @@
 
 
     <fragment android:id="@+id/mainRingChekFragment"
-              android:name="iut.clermont.pm.ringcheck.ui.mainringchek.MainRingChekFragment"
-              android:label="main_ring_chek_fragment" tools:layout="@layout/main_ring_chek_fragment"/>
+              android:name="iut.clermont.pm.ringcheck.ui.mainringchek.ListRingCheckFragment"
+              android:label="main_ring_chek_fragment" tools:layout="@layout/list_ring_chek_fragment">
+        <action android:id="@+id/action_mainRingChekFragment_to_addRingCheckFragment"
+                app:destination="@id/addRingCheckFragment"/>
+    </fragment>
+    <fragment android:id="@+id/addRingCheckFragment"
+              android:name="iut.clermont.pm.ringcheck.ui.mainringchek.AddRingCheckFragment"
+              android:label="add_ring_check_fragment" tools:layout="@layout/add_ring_check_fragment"/>
 </navigation>

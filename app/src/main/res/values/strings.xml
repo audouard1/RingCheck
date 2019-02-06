@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">RingCheck</string>
     <string name="action_settings">Settings</string>
+    <string name="titleAlarm">Name</string>
+    <string name="dateAlarm">Date</string>
+    <string name="startAlarm">Wake up at </string>
+    <string name="endAlarm">go at </string>
+
 </resources>
