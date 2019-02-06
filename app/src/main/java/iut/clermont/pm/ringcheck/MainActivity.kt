@@ -6,7 +6,9 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
+import iut.clermont.pm.ringcheck.ui.mainringchek.ListRingCheckFragmentDirections
 import kotlinx.android.synthetic.main.main_ring_chek_activity.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,13 +20,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_ring_chek_activity)
         setSupportActionBar(toolbar)
-
+        navController = Navigation.findNavController(this, R.id.mainFrag)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            val direction =
+                ListRingCheckFragmentDirections.actionMainRingChekFragmentToAddRingCheckFragment()
+            navController.navigate(direction)
         }
-        navController = Navigation.findNavController(this, R.id.mainFrag)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
