@@ -21,13 +21,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_ring_chek_activity)
         setSupportActionBar(toolbar)
         navController = Navigation.findNavController(this, R.id.mainFrag)
-
-        fab.setOnClickListener { view ->
-            val direction =
-                ListRingCheckFragmentDirections.actionMainRingChekFragmentToAddRingCheckFragment()
-            navController.navigate(direction)
-        }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

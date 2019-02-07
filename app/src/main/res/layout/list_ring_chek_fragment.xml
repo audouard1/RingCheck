@@ -5,7 +5,7 @@
     <data>
 
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/mainringchek"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -19,5 +19,14 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:context="iut.clermont.pm.ringcheck.MainActivity"
         />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                app:srcCompat="@drawable/ic_add" app:backgroundTint="@color/colorPrimary"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>

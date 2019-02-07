@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
 
 import iut.clermont.pm.ringcheck.R
@@ -29,6 +30,10 @@ class AddRingCheckFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(AddRingCheckViewModel::class.java)
         // TODO: Use the ViewModel
+    }
+
+    fun showTimePickerDialog(v: View) {
+        TimePickerFragment().show(this.fragmentManager, "timePicker")
     }
 
 }
