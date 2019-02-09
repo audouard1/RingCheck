@@ -29,12 +29,18 @@
                 android:text="@string/dateAlarm"
                 android:layout_width="@dimen/padLeft"
                 android:layout_height="wrap_content" android:id="@+id/dateAlarm" android:layout_weight="1"/>
-        <androidx.appcompat.widget.AppCompatSpinner
+        <Button
+                android:id="@+id/datePickerButon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="date"
+                android:text="test"
+        />
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
                 android:ems="10"
-                android:id="@+id/inputDate" android:layout_weight="1"/>
+                android:id="@+id/inputDateAlarm" android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
@@ -44,6 +50,12 @@
                 android:text="@string/startAlarm"
                 android:layout_width="@dimen/padLeft"
                 android:layout_height="wrap_content" android:id="@+id/startAlarm" android:layout_weight="1"/>
+        <Button
+                android:id="@+id/timeStartPickerButon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="test"
+        />
         <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,10 +72,11 @@
                 android:layout_width="@dimen/padLeft"
                 android:layout_height="wrap_content" android:id="@+id/endAlarm" android:layout_weight="1"/>
         <Button
+                android:id="@+id/timeEndPickerButon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="test"
-                android:onClick="showTimePickerDialog" />
+                />
         <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

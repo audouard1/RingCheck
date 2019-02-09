@@ -46,10 +46,10 @@ class ListRingCheckFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {
             val direction =
                 ListRingCheckFragmentDirections.actionMainRingChekFragmentToAddRingCheckFragment()
-            view.findNavController().navigate(direction)
+            it.findNavController().navigate(direction)
         }
     }
 }

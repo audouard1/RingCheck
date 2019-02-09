@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
+import iut.clermont.pm.ringcheck.ui.mainringchek.DatePickerFragment
 import iut.clermont.pm.ringcheck.ui.mainringchek.ListRingCheckFragmentDirections
+import iut.clermont.pm.ringcheck.ui.mainringchek.TimePickerFragment
 import kotlinx.android.synthetic.main.main_ring_chek_activity.*
 
 class MainActivity : AppCompatActivity() {
@@ -38,9 +41,4 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-
-
-
-
 }

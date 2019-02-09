@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
-
-import iut.clermont.pm.ringcheck.R
 import iut.clermont.pm.ringcheck.viewmodel.AddRingCheckViewModel
+import kotlinx.android.synthetic.main.add_ring_check_fragment.*
+
 
 class AddRingCheckFragment : Fragment() {
 
@@ -23,7 +22,14 @@ class AddRingCheckFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.add_ring_check_fragment, container, false)
+        return inflater.inflate(iut.clermont.pm.ringcheck.R.layout.add_ring_check_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        datePickerButon.setOnClickListener { DatePickerFragment().show(fragmentManager, "datePicker") }
+        timeStartPickerButon.setOnClickListener{ TimePickerFragment().show(fragmentManager, "timeStartPickerButon")}
+        timeEndPickerButon.setOnClickListener{ TimePickerFragment().show(fragmentManager, "timeEndPickerButon")}
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -32,8 +38,6 @@ class AddRingCheckFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    fun showTimePickerDialog(v: View) {
-        TimePickerFragment().show(this.fragmentManager, "timePicker")
-    }
+
 
 }
