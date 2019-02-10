@@ -17,22 +17,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                 <TextView
-                        android:text="@{alarm.startDate.hour}"
+                        android:text="@{alarm.startDate.toLocalTime().toString()}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/startAlarm"/>
                 <TextView
                         android:id="@+id/endAlarm"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{alarm.endData.hour}"/>
+                        android:text="@{alarm.endData.toLocalTime().toString()}"/>
             </LinearLayout>
             <TextView
                     android:text="@{alarm.name}"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/alarmTitle"/>
         </LinearLayout>
         <Switch
-                android:layout_width="74dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content" android:id="@+id/switchAlarm" android:layout_weight="1"
         />
     </LinearLayout>

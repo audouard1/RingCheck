@@ -22,6 +22,7 @@ class AddRingCheckFragment : Fragment() {
 
     companion object {
         fun newInstance() = AddRingCheckFragment()
+        public var alarm = 0
         private const val DATE_PICKER = 300
         private const val STARTTIME_PICKER = 301
         private const val ENDTIME_PICKER = 302
@@ -55,25 +56,24 @@ class AddRingCheckFragment : Fragment() {
     }
 
     private fun saveAlarm() {
-        if(inputDateAlarm.text.toString() != "" && inputStartAlarm.text.toString() != "") {
-            if(inputEndAlarm.text.toString() != "") {
-                viewModel.alarm.value?.let {
-                    it.name = inputNameAlarm.text.toString()
-                    it.startDate = DateUtils.convertDateFromView(inputDateAlarm.text.toString())
+        if (inputDateAlarm.text.toString() != "" && inputStartAlarm.text.toString() != "") {
+            viewModel.alarm.value?.let {
+                it.name = inputNameAlarm.text.toString()
+                it.startDate = DateUtils.convertDateFromView(inputDateAlarm.text.toString())
+                    .plusHours(inputStartAlarm.text.split(":").first().toLong())
+                    .plusMinutes(inputStartAlarm.text.split(":").last().toLong())
+                if (inputEndAlarm.text.toString() != "") {
+                    it.endData = DateUtils.convertDateFromView(inputDateAlarm.text.toString())
+                        .plusHours(inputEndAlarm.text.split(":").first().toLong())
+                        .plusMinutes(inputEndAlarm.text.split(":").last().toLong())
+                } else {
+                    it.endData = DateUtils.convertDateFromView(inputDateAlarm.text.toString())
                         .plusHours(inputStartAlarm.text.split(":").first().toLong())
-                        .plusMinutes(inputStartAlarm.text.split(":").last().toLong())
-                    if(inputEndAlarm.text.toString() != "") {
-                        it.endData = DateUtils.convertDateFromView(inputDateAlarm.text.toString())
-                            .plusHours(inputEndAlarm.text.split(":").first().toLong())
-                            .plusMinutes(inputEndAlarm.text.split(":").last().toLong())
-                    }else {
-                        it.endData = DateUtils.convertDateFromView(inputDateAlarm.text.toString())
-                            .plusHours(inputStartAlarm.text.split(":").first().toLong())
-                            .plusMinutes(inputStartAlarm.text.split(":").last().toLong().plus(-1))
-                    }
+                        .plusMinutes(inputStartAlarm.text.split(":").last().toLong().plus(-1))
                 }
+
             }
-            viewModel.insert()
+            viewModel.insertOrUpdate()
             findNavController().popBackStack()
         }
     }
@@ -121,33 +121,31 @@ class AddRingCheckFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == DATE_PICKER){
+        if (requestCode == DATE_PICKER) {
             updateInputDate(data)
         }
-        if(requestCode == STARTTIME_PICKER){
+        if (requestCode == STARTTIME_PICKER) {
             updateTime(inputStartAlarm, data)
         }
-        if(requestCode == ENDTIME_PICKER){
+        if (requestCode == ENDTIME_PICKER) {
             updateTime(inputEndAlarm, data)
         }
     }
 
-    private fun updateTime(textView : TextView, data: Intent?) {
+    private fun updateTime(textView: TextView, data: Intent?) {
         textView.text = StringBuilder()
-            .append(String.format("%02d",data?.getIntExtra("HOUR", 1)))
-            .append(":").append(String.format("%02d",data?.getIntExtra("MIN", 1)))
+            .append(String.format("%02d", data?.getIntExtra("HOUR", 1)))
+            .append(":").append(String.format("%02d", data?.getIntExtra("MIN", 1)))
     }
 
     private fun updateInputDate(data: Intent?) {
         inputDateAlarm.text = StringBuilder()
-            .append(String.format("%02d",data?.getIntExtra("DAY", 1)))
+            .append(String.format("%02d", data?.getIntExtra("DAY", 1)))
             .append("/")
-            .append(String.format("%02d",data?.getIntExtra("MONTH", 1)?.plus(1)))
+            .append(String.format("%02d", data?.getIntExtra("MONTH", 1)?.plus(1)))
             .append("/")
-            .append(String.format("%02d",data?.getIntExtra("YEAR", 1)))
+            .append(String.format("%02d", data?.getIntExtra("YEAR", 1)))
     }
-
-
 
 
 }

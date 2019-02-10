@@ -35,11 +35,14 @@ class AddRingCheckViewModel(alarmId : Int = 0) : ViewModel() {
             alarm = alarmDao.getAlarm(alarmId)
         }
     }
-    fun insert() = scope.launch(Dispatchers.IO) {
+    fun insertOrUpdate() = scope.launch(Dispatchers.IO) {
         alarm.value?.let{
-            repository.insert(it)
+            if(it.alarmId == 0) {
+                repository.insert(it)
+            }else{
+                repository.update(it)
+            }
         }
-
     }
 
     override fun onCleared() {

@@ -12,4 +12,9 @@ class AlarmRepository(private val alarmDao : AlarmDao) {
     suspend fun insert(alarm: Alarm) {
         alarmDao.insert(alarm)
     }
+
+    @WorkerThread
+    suspend fun update(alarm: Alarm) {
+        alarmDao.update(alarm)
+    }
 }
