@@ -1,4 +1,4 @@
-package iut.clermont.pm.ringcheck.ui.mainringchek.pickers
+package iut.clermont.pm.ringcheck.ui.ringcheck.pickers
 
 import android.app.Activity.RESULT_OK
 import android.app.DatePickerDialog
@@ -6,7 +6,6 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.DatePicker
-import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import java.util.*
 

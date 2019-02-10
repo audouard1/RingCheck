@@ -9,6 +9,7 @@ import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import iut.clermont.pm.ringcheck.data.model.Alarm
 import iut.clermont.pm.ringcheck.data.persistence.RingCheckDatabase
+import org.threeten.bp.ZonedDateTime
 import java.util.*
 
 class SeedDatabaseWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
@@ -24,7 +25,7 @@ class SeedDatabaseWorker(context: Context, workerParams: WorkerParameters) : Wor
             jsonReader = JsonReader(inputStream.reader())
             var c: List<AlarmDTO> =  Gson().fromJson(jsonReader, pairType)
             for( d in c){
-                alarmList.add(Alarm(d.alarmId, d.name, Date(), Date()))
+                alarmList.add(Alarm(d.alarmId, d.name, ZonedDateTime.now(), ZonedDateTime.now()))
             }
             val database = RingCheckDatabase.getInstance()
             database.alarmDao().insertAll(alarmList)

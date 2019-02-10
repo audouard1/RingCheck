@@ -1,4 +1,4 @@
-package iut.clermont.pm.ringcheck.ui.mainringchek
+package iut.clermont.pm.ringcheck.ui.ringcheck
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle

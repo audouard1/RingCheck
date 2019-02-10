@@ -26,9 +26,6 @@ class AlarmViewModel : ViewModel() {
         repository = AlarmRepository(alarmDao)
         allAlarms = repository.allArarm
     }
-    fun insert(alarm: Alarm) = scope.launch(Dispatchers.IO) {
-        repository.insert(alarm)
-    }
 
     override fun onCleared() {
         super.onCleared()

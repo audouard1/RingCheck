@@ -1,6 +1,7 @@
 package iut.clermont.pm.ringcheck.data.persistence
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -24,4 +25,7 @@ interface AlarmDao {
 
     @Query("SELECT * FROM check_elems WHERE alarm_id IS :alarmId")
     fun getCheckElems(alarmId : Int): LiveData<List<CheckElem>>
+
+    @Query("SELECT * FROM alarms WHERE alarm_id IS :alarmId")
+    fun getAlarm(alarmId : Int): LiveData<Alarm>
 }

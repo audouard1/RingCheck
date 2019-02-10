@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:context=".ui.mainringchek.AddRingCheckFragment" android:orientation="vertical" android:paddingLeft="16dp"
+        tools:context=".ui.ringcheck.AddRingCheckFragment" android:orientation="vertical" android:paddingLeft="16dp"
 >
     <TextView
             android:hint="@string/date"

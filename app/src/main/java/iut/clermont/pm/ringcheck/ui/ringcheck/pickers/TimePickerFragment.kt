@@ -1,4 +1,4 @@
-package iut.clermont.pm.ringcheck.ui.mainringchek.pickers
+package iut.clermont.pm.ringcheck.ui.ringcheck.pickers
 
 import android.app.Activity
 import android.app.Dialog

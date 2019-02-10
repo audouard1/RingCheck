@@ -7,5 +7,7 @@
     <string name="endAlarm">go at </string>
     <string name="date">Date</string>
     <string name="name">Name</string>
+    <string name="action_save">save</string>
+    <string name="action_delete">delete</string>
 
 </resources>
