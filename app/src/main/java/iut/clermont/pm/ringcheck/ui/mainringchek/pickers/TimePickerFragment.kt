@@ -1,7 +1,9 @@
-package iut.clermont.pm.ringcheck.ui.mainringchek
+package iut.clermont.pm.ringcheck.ui.mainringchek.pickers
 
+import android.app.Activity
 import android.app.Dialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.widget.TimePicker
@@ -21,6 +23,12 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
     }
 
     override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
-        // Do something with the time chosen by the user
+        targetFragment?.let {
+            val intent = Intent().apply {
+                putExtra("HOUR", hourOfDay)
+                putExtra("MIN", minute)
+            }
+            return it.onActivityResult(targetRequestCode, Activity.RESULT_OK,intent)
+        }
     }
 }

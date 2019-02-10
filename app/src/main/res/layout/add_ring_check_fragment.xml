@@ -2,86 +2,45 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.mainringchek.AddRingCheckFragment" android:orientation="vertical">
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" android:gravity="center">
-        <TextView
-                android:text="@string/titleAlarm"
-                android:layout_width="@dimen/padLeft"
-                android:layout_height="wrap_content" android:id="@+id/nameAlarm" android:layout_weight="1"/>
-        <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:text="@string/titleAlarm"
-                android:ems="10"
-                android:id="@+id/inputNameAlarm" android:layout_weight="1"/>
-    </LinearLayout>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" android:gravity="center">
-        <TextView
-                android:text="@string/dateAlarm"
-                android:layout_width="@dimen/padLeft"
-                android:layout_height="wrap_content" android:id="@+id/dateAlarm" android:layout_weight="1"/>
-        <Button
-                android:id="@+id/datePickerButon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="test"
-        />
-        <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="time"
-                android:ems="10"
-                android:id="@+id/inputDateAlarm" android:layout_weight="1"/>
-    </LinearLayout>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" android:gravity="center">
-        <TextView
-                android:text="@string/startAlarm"
-                android:layout_width="@dimen/padLeft"
-                android:layout_height="wrap_content" android:id="@+id/startAlarm" android:layout_weight="1"/>
-        <Button
-                android:id="@+id/timeStartPickerButon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="test"
-        />
-        <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="time"
-                android:ems="10"
-                android:id="@+id/inputStartAlarm" android:layout_weight="1"/>
-    </LinearLayout>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" android:gravity="center">
-        <TextView
-                android:text="@string/endAlarm"
-                android:layout_width="@dimen/padLeft"
-                android:layout_height="wrap_content" android:id="@+id/endAlarm" android:layout_weight="1"/>
-        <Button
-                android:id="@+id/timeEndPickerButon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="test"
-                />
-        <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="time"
-                android:ems="10"
-                android:id="@+id/inputEndAlarm" android:layout_weight="1"/>
-    </LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:context=".ui.mainringchek.AddRingCheckFragment" android:orientation="vertical" android:paddingLeft="16dp"
+>
+    <TextView
+            android:hint="@string/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/inputDateAlarm" android:layout_weight="1" android:paddingTop="16dp"
+            android:textSize="18sp"/>
+
+
+    <TextView
+            android:hint="@string/startAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/inputStartAlarm" android:layout_weight="1" android:paddingTop="16dp"
+            android:textSize="18sp"/>
+
+    <TextView
+            android:hint="@string/endAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/inputEndAlarm" android:layout_weight="1" android:paddingTop="16dp"
+            android:textSize="18sp"/>
+
+    <EditText
+            android:hint="@string/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/DefaultAlarmName"
+            android:ems="10"
+            android:id="@+id/inputNameAlarm" android:layout_weight="1" android:textSize="18sp"
+            android:paddingTop="16dp"/>
 </LinearLayout>

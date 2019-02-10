@@ -1,9 +1,12 @@
-package iut.clermont.pm.ringcheck.ui.mainringchek
+package iut.clermont.pm.ringcheck.ui.mainringchek.pickers
 
+import android.app.Activity.RESULT_OK
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.DatePicker
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import java.util.*
 
@@ -21,6 +24,16 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
-        // Do something with the date chosen by the user
+
+        targetFragment?.let {
+            val intent = Intent().apply {
+                putExtra("DAY", day)
+                putExtra("MONTH", month)
+                putExtra("YEAR", year)
+            }
+            return it.onActivityResult(300,RESULT_OK,intent)
+        }
+
+
     }
 }
