@@ -6,23 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import iut.clermont.pm.ringcheck.R
 import iut.clermont.pm.ringcheck.data.model.Alarm
 import iut.clermont.pm.ringcheck.databinding.RecyclerviewItemBinding
+import androidx.recyclerview.widget.ListAdapter
+import iut.clermont.pm.ringcheck.ui.ringcheck.AddRingCheckFragment
+import iut.clermont.pm.ringcheck.ui.ringcheck.ListRingCheckFragmentDirections
 
-class AlarmAdaptator internal constructor(
-    context: Context?
-) : RecyclerView.Adapter<AlarmAdaptator.AlarmViewHolder>() {
-
-    private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var alarms = emptyList<Alarm>() // Cached copy of words
+class AlarmAdaptator : ListAdapter<Alarm, AlarmAdaptator.AlarmViewHolder>(AlarmDiffCallback()) {
 
     inner class AlarmViewHolder(private val binding : RecyclerviewItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Alarm) {
+        fun bind(listener: View.OnClickListener, item: Alarm) {
             binding.apply {
                 alarm = item
-
+                clickListener = listener
+                executePendingBindings()
             }
         }
     }
@@ -35,18 +36,31 @@ class AlarmAdaptator internal constructor(
     }
 
     override fun onBindViewHolder(holder: AlarmViewHolder, position: Int) {
-        val alarm = alarms[position]
+        val alarm = getItem(position)
         holder.apply {
-            bind(alarm)
+            bind(createOnClickListener(alarm.alarmId),alarm)
             itemView.tag = alarm
         }
     }
 
-    internal fun setAlarm(alarms: List<Alarm>) {
-        this.alarms = alarms
-        notifyDataSetChanged()
+    private fun createOnClickListener(alarmId: Int): View.OnClickListener {
+        return View.OnClickListener {
+            val direction = ListRingCheckFragmentDirections.actionMainRingChekFragmentToAddRingCheckFragment()
+            direction.alarmId = alarmId
+            it.findNavController().navigate(direction)
+        }
     }
 
-    override fun getItemCount() = alarms.size
+}
+
+private class AlarmDiffCallback : DiffUtil.ItemCallback<Alarm>() {
+
+    override fun areItemsTheSame(oldItem: Alarm, newItem: Alarm): Boolean {
+        return oldItem.alarmId == newItem.alarmId
+    }
+
+    override fun areContentsTheSame(oldItem: Alarm, newItem: Alarm): Boolean {
+        return oldItem == newItem
+    }
 }
 

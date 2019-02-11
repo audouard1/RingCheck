@@ -30,7 +30,7 @@ class ListRingCheckFragment : Fragment() {
     ): View {
         viewModel = ViewModelProviders.of(this).get(AlarmViewModel::class.java)
         val binding: ListRingChekFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.list_ring_chek_fragment, container, false)
-        val adapter = AlarmAdaptator(context)
+        val adapter = AlarmAdaptator()
         binding.recyclerview.adapter = adapter
 
 
@@ -40,7 +40,7 @@ class ListRingCheckFragment : Fragment() {
 
     private fun subscribeUi(adapter: AlarmAdaptator) {
         viewModel.allAlarms.observe(viewLifecycleOwner, Observer { alarms ->
-            if (alarms != null) adapter.setAlarm(alarms)
+            if (alarms != null) adapter.submitList(alarms)
         })
     }
 

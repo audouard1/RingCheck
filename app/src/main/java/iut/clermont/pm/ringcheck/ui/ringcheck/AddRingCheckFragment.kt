@@ -22,7 +22,7 @@ class AddRingCheckFragment : Fragment() {
 
     companion object {
         fun newInstance() = AddRingCheckFragment()
-        public var alarm = 0
+       // val alarmId = AddRingCheckFragmentArgs.fromBundle(arguments!!).plantId
         private const val DATE_PICKER = 300
         private const val STARTTIME_PICKER = 301
         private const val ENDTIME_PICKER = 302

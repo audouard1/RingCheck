@@ -9,11 +9,20 @@
               android:name="iut.clermont.pm.ringcheck.ui.ringcheck.ListRingCheckFragment"
               android:label="main_ring_chek_fragment">
         <action android:id="@+id/action_mainRingChekFragment_to_addRingCheckFragment"
-                app:destination="@id/addRingCheckFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:destination="@id/addRingCheckFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim">
+        </action>
     </fragment>
     <fragment android:id="@+id/addRingCheckFragment"
               android:name="iut.clermont.pm.ringcheck.ui.ringcheck.AddRingCheckFragment"
-              android:label="add_ring_check_fragment" tools:layout="@layout/add_ring_check_fragment"/>
+              android:label="add_ring_check_fragment"
+              tools:layout="@layout/add_ring_check_fragment">
+        <argument
+                android:name="alarmId"
+                app:argType="integer"
+                android:defaultValue="0"/>
+    </fragment>
 </navigation>
