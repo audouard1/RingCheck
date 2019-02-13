@@ -45,8 +45,7 @@ class AlarmAdaptator : ListAdapter<Alarm, AlarmAdaptator.AlarmViewHolder>(AlarmD
 
     private fun createOnClickListener(alarmId: Int): View.OnClickListener {
         return View.OnClickListener {
-            val direction = ListRingCheckFragmentDirections.actionMainRingChekFragmentToAddRingCheckFragment()
-            direction.alarmId = alarmId
+            val direction = ListRingCheckFragmentDirections.actionMainRingChekFragmentToAddRingCheckFragment(alarmId)
             it.findNavController().navigate(direction)
         }
     }

@@ -7,33 +7,36 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import iut.clermont.pm.ringcheck.data.model.Alarm
+import androidx.navigation.fragment.navArgs
+import iut.clermont.pm.ringcheck.databinding.AddRingCheckFragmentBinding
 import iut.clermont.pm.ringcheck.ui.ringcheck.pickers.DatePickerFragment
 import iut.clermont.pm.ringcheck.ui.ringcheck.pickers.TimePickerFragment
 import iut.clermont.pm.ringcheck.utils.DateUtils
-import iut.clermont.pm.ringcheck.viewmodel.AddRingCheckViewModel
+import iut.clermont.pm.ringcheck.utils.viewModelFactory
+import iut.clermont.pm.ringcheck.viewmodel.AlarmVM
 import kotlinx.android.synthetic.main.add_ring_check_fragment.*
-import org.threeten.bp.ZoneId
-import org.threeten.bp.format.DateTimeFormatter
-import java.text.SimpleDateFormat
 
 
 class AddRingCheckFragment : Fragment() {
 
     companion object {
         fun newInstance() = AddRingCheckFragment()
-       // val alarmId = AddRingCheckFragmentArgs.fromBundle(arguments!!).plantId
+        // val alarmId = AddRingCheckFragmentArgs.fromBundle(arguments!!).plantId
         private const val DATE_PICKER = 300
         private const val STARTTIME_PICKER = 301
         private const val ENDTIME_PICKER = 302
     }
 
-    private lateinit var viewModel: AddRingCheckViewModel
+    val args: AddRingCheckFragmentArgs by navArgs()
+
+    private lateinit var viewModel: AlarmVM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        viewModel = ViewModelProviders.of(this).get(AddRingCheckViewModel::class.java)
+        viewModel = ViewModelProviders.of(this,
+            viewModelFactory { AlarmVM(args.alarmId) })
+            .get(AlarmVM::class.java)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -63,11 +66,11 @@ class AddRingCheckFragment : Fragment() {
                     .plusHours(inputStartAlarm.text.split(":").first().toLong())
                     .plusMinutes(inputStartAlarm.text.split(":").last().toLong())
                 if (inputEndAlarm.text.toString() != "") {
-                    it.endData = DateUtils.convertDateFromView(inputDateAlarm.text.toString())
+                    it.endDate = DateUtils.convertDateFromView(inputDateAlarm.text.toString())
                         .plusHours(inputEndAlarm.text.split(":").first().toLong())
                         .plusMinutes(inputEndAlarm.text.split(":").last().toLong())
                 } else {
-                    it.endData = DateUtils.convertDateFromView(inputDateAlarm.text.toString())
+                    it.endDate = DateUtils.convertDateFromView(inputDateAlarm.text.toString())
                         .plusHours(inputStartAlarm.text.split(":").first().toLong())
                         .plusMinutes(inputStartAlarm.text.split(":").last().toLong().plus(-1))
                 }
@@ -82,7 +85,10 @@ class AddRingCheckFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(iut.clermont.pm.ringcheck.R.layout.add_ring_check_fragment, container, false)
+        val binding = AddRingCheckFragmentBinding.inflate(inflater)
+        binding.alarmVM = viewModel
+        binding.lifecycleOwner = this
+        return  binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -115,7 +121,7 @@ class AddRingCheckFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(AddRingCheckViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(AlarmVM::class.java)
         // TODO: Use the ViewModel
     }
 

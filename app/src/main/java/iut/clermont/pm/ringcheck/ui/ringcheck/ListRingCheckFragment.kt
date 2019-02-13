@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import iut.clermont.pm.ringcheck.R
 import iut.clermont.pm.ringcheck.adaptator.AlarmAdaptator
 import iut.clermont.pm.ringcheck.databinding.ListRingChekFragmentBinding

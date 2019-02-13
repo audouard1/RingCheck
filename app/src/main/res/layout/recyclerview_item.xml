@@ -29,7 +29,7 @@
                         android:id="@+id/endAlarm"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{alarm.endData.toLocalTime().toString()}"/>
+                        android:text="@{alarm.endDate.toLocalTime().toString()}"/>
             </LinearLayout>
             <TextView
                     android:text="@{alarm.name}"

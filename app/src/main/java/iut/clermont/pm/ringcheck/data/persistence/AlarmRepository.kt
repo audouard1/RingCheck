@@ -17,4 +17,7 @@ class AlarmRepository(private val alarmDao : AlarmDao) {
     suspend fun update(alarm: Alarm) {
         alarmDao.update(alarm)
     }
+
+    @WorkerThread
+    fun getAlarm(alarmId : Int)= alarmDao.getAlarm(alarmId)
 }

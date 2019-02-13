@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import org.threeten.bp.ZonedDateTime
 import kotlin.coroutines.CoroutineContext
 
-class AddRingCheckViewModel(alarmId : Int = 0) : ViewModel() {
+class AlarmVM(alarmId : Int = 0) : ViewModel() {
     private var parentJob = Job()
     private val coroutineContext: CoroutineContext
         get() = parentJob + Dispatchers.Main
@@ -28,11 +28,12 @@ class AddRingCheckViewModel(alarmId : Int = 0) : ViewModel() {
         repository = AlarmRepository(alarmDao)
         if(alarmId == 0){
             val defaultAlarm = MutableLiveData<Alarm>()
-            defaultAlarm.value = Alarm(0,"alarm", ZonedDateTime.now(), ZonedDateTime.now())
+            defaultAlarm.value = Alarm(0,"alarm", ZonedDateTime.now(), ZonedDateTime.now(),false, false)
             alarm = defaultAlarm
         }
         else{
-            alarm = alarmDao.getAlarm(alarmId)
+            alarm = repository.getAlarm(alarmId)
+
         }
     }
     fun insertOrUpdate() = scope.launch(Dispatchers.IO) {

@@ -12,7 +12,9 @@ data class Alarm (
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "alarm_id") val alarmId: Int,
     var name: String,
     var startDate: ZonedDateTime,
-    var endData: ZonedDateTime
+    var endDate: ZonedDateTime,
+    var isActive: Boolean,
+    var isRepeat: Boolean
 
 ) {
     @Ignore

@@ -25,7 +25,7 @@ class SeedDatabaseWorker(context: Context, workerParams: WorkerParameters) : Wor
             jsonReader = JsonReader(inputStream.reader())
             var c: List<AlarmDTO> =  Gson().fromJson(jsonReader, pairType)
             for( d in c){
-                alarmList.add(Alarm(d.alarmId, d.name, ZonedDateTime.now(), ZonedDateTime.now()))
+                alarmList.add(Alarm(d.alarmId, d.name, ZonedDateTime.now(), ZonedDateTime.now(),false,false))
             }
             val database = RingCheckDatabase.getInstance()
             database.alarmDao().insertAll(alarmList)
