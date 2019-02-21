@@ -46,6 +46,14 @@ class AlarmVM(alarmId : Int = 0) : ViewModel() {
         }
     }
 
+    fun deleteAlarm() = scope.launch(Dispatchers.IO){
+        alarm.value?.let {
+            if(it.alarmId != 0){
+                repository.delete(it.alarmId)
+            }
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         parentJob.cancel()

@@ -28,4 +28,7 @@ interface AlarmDao {
 
     @Query("SELECT * FROM alarms WHERE alarm_id =:alarmId")
     fun getAlarm(alarmId : Int): LiveData<Alarm>
+
+    @Query("DELETE FROM alarms WHERE alarm_id =:alarmId")
+    fun delete(alarmId : Int)
 }

@@ -1,5 +1,6 @@
 package iut.clermont.pm.ringcheck.ui.ringcheck
 
+import android.app.AlarmManager
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import iut.clermont.pm.ringcheck.databinding.AddRingCheckFragmentBinding
+import iut.clermont.pm.ringcheck.manager.RingCheckManager
 import iut.clermont.pm.ringcheck.ui.ringcheck.pickers.DatePickerFragment
 import iut.clermont.pm.ringcheck.ui.ringcheck.pickers.TimePickerFragment
 import iut.clermont.pm.ringcheck.utils.DateUtils
@@ -48,14 +50,24 @@ class AddRingCheckFragment : Fragment() {
         return when (item?.itemId) {
             iut.clermont.pm.ringcheck.R.id.action_save -> {
                 saveAlarm()
+                var a = RingCheckManager()
+                activity?.let {
+                    a.setAlarm(it)
+                }
                 true
+
             }
             iut.clermont.pm.ringcheck.R.id.action_delete -> {
-                //deleteAlarm()
+                deleteAlarm()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun deleteAlarm() {
+        viewModel.deleteAlarm()
+        findNavController().popBackStack()
     }
 
     private fun saveAlarm() {
