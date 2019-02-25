@@ -50,12 +50,7 @@ class AddRingCheckFragment : Fragment() {
         return when (item?.itemId) {
             iut.clermont.pm.ringcheck.R.id.action_save -> {
                 saveAlarm()
-                var a = RingCheckManager()
-                activity?.let {
-                    a.setAlarm(it)
-                }
                 true
-
             }
             iut.clermont.pm.ringcheck.R.id.action_delete -> {
                 deleteAlarm()
@@ -89,8 +84,6 @@ class AddRingCheckFragment : Fragment() {
 
             }
             viewModel.insertOrUpdate()
-            val alarmManager = RingCheckManager()
-            activity?.let { alarmManager.setAlarm(it) }
             findNavController().popBackStack()
         }
     }

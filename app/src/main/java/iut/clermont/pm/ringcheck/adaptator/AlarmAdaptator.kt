@@ -1,28 +1,30 @@
 package iut.clermont.pm.ringcheck.adaptator
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.CompoundButton
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import iut.clermont.pm.ringcheck.R
 import iut.clermont.pm.ringcheck.data.model.Alarm
 import iut.clermont.pm.ringcheck.databinding.RecyclerviewItemBinding
-import androidx.recyclerview.widget.ListAdapter
-import iut.clermont.pm.ringcheck.ui.ringcheck.AddRingCheckFragment
+import iut.clermont.pm.ringcheck.manager.RingCheckManager
 import iut.clermont.pm.ringcheck.ui.ringcheck.ListRingCheckFragmentDirections
 
 class AlarmAdaptator : ListAdapter<Alarm, AlarmAdaptator.AlarmViewHolder>(AlarmDiffCallback()) {
 
+    private val ringCheckManager : RingCheckManager = RingCheckManager()
+
     inner class AlarmViewHolder(private val binding : RecyclerviewItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(listener: View.OnClickListener, item: Alarm) {
+        fun bind(listener: View.OnClickListener, checkedListener : CompoundButton.OnCheckedChangeListener, item: Alarm) {
             binding.apply {
                 alarm = item
                 clickListener = listener
+                changeListener = checkedListener
                 executePendingBindings()
             }
         }
@@ -38,7 +40,7 @@ class AlarmAdaptator : ListAdapter<Alarm, AlarmAdaptator.AlarmViewHolder>(AlarmD
     override fun onBindViewHolder(holder: AlarmViewHolder, position: Int) {
         val alarm = getItem(position)
         holder.apply {
-            bind(createOnClickListener(alarm.alarmId),alarm)
+            bind(createOnClickListener(alarm.alarmId), createOnCheckedChangeListener(alarm), alarm)
             itemView.tag = alarm
         }
     }
@@ -49,8 +51,10 @@ class AlarmAdaptator : ListAdapter<Alarm, AlarmAdaptator.AlarmViewHolder>(AlarmD
             it.findNavController().navigate(direction)
         }
     }
-
-}
+    private fun createOnCheckedChangeListener(alarm: Alarm): CompoundButton.OnCheckedChangeListener{
+        return CompoundButton.OnCheckedChangeListener { buttonView, isChecked -> if(isChecked) ringCheckManager.setAlarm(buttonView.context, alarm) }
+        }
+    }
 
 private class AlarmDiffCallback : DiffUtil.ItemCallback<Alarm>() {
 
