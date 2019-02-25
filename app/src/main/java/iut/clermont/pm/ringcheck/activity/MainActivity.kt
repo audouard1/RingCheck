@@ -1,4 +1,4 @@
-package iut.clermont.pm.ringcheck
+package iut.clermont.pm.ringcheck.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import iut.clermont.pm.ringcheck.R
 import kotlinx.android.synthetic.main.main_ring_chek_activity.*
 
 class MainActivity : AppCompatActivity() {

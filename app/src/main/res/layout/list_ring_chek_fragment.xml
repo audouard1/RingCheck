@@ -17,7 +17,7 @@
                 android:clipToPadding="false"
                 tools:listitem="@layout/recyclerview_item"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:context="iut.clermont.pm.ringcheck.MainActivity"
+                tools:context="iut.clermont.pm.ringcheck.activity.MainActivity"
         />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"

@@ -89,6 +89,8 @@ class AddRingCheckFragment : Fragment() {
 
             }
             viewModel.insertOrUpdate()
+            val alarmManager = RingCheckManager()
+            activity?.let { alarmManager.setAlarm(it) }
             findNavController().popBackStack()
         }
     }
