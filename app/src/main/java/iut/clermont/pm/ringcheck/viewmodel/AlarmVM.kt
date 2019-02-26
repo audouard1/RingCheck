@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import iut.clermont.pm.ringcheck.data.model.Alarm
+import iut.clermont.pm.ringcheck.data.model.CheckElem
 import iut.clermont.pm.ringcheck.data.persistence.AlarmRepository
 import iut.clermont.pm.ringcheck.data.persistence.RingCheckDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -20,6 +21,7 @@ class AlarmVM(alarmId : Int = 0) : ViewModel() {
     private val scope = CoroutineScope(coroutineContext)
     private val repository : AlarmRepository
     val alarm : LiveData<Alarm>
+    val checkElems : LiveData<List<CheckElem>>
 
 
 
@@ -28,12 +30,15 @@ class AlarmVM(alarmId : Int = 0) : ViewModel() {
         repository = AlarmRepository(alarmDao)
         if(alarmId == 0){
             val defaultAlarm = MutableLiveData<Alarm>()
+            val defaultElems = MutableLiveData<List<CheckElem>>()
             defaultAlarm.value = Alarm(0,"alarm", ZonedDateTime.now(), ZonedDateTime.now(),false, false)
+            defaultElems.value = ArrayList<CheckElem>()
             alarm = defaultAlarm
+            checkElems = defaultElems
         }
         else{
             alarm = repository.getAlarm(alarmId)
-
+            checkElems = repository.getCheckElems(alarmId)
         }
     }
     fun insertOrUpdate() = scope.launch(Dispatchers.IO) {

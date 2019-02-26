@@ -22,5 +22,8 @@ class AlarmRepository(private val alarmDao : AlarmDao) {
     fun getAlarm(alarmId : Int)= alarmDao.getAlarm(alarmId)
 
     @WorkerThread
+    fun getCheckElems(alarmId : Int)= alarmDao.getCheckElems(alarmId)
+
+    @WorkerThread
     fun delete(alarmId : Int) = alarmDao.delete(alarmId)
 }

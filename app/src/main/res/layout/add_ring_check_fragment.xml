@@ -12,52 +12,56 @@
             tools:context=".ui.ringcheck.AddRingCheckFragment" android:orientation="vertical" android:paddingLeft="16dp"
     >
 
-        <androidx.appcompat.widget.LinearLayoutCompat android:orientation="vertical"
-                                                      android:layout_height="wrap_content"
-                                                      android:layout_width="wrap_content"
-                                                      app:layout_constraintTop_toTopOf="parent"
-                                                      app:layout_constraintRight_toRightOf="parent"
-                                                      app:layout_constraintLeft_toLeftOf="parent"
-                                                      app:layout_constraintEnd_toEndOf="parent"
-                                                      app:layout_constraintBottom_toBottomOf="parent">
-            <TextView
-                    android:hint="@string/date"
-                    android:text="@{alarmVM.alarm.startDate.toLocalDate().toString()}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:ems="10"
-                    android:id="@+id/inputDateAlarm" android:layout_weight="1" android:paddingTop="16dp"
-                    android:textSize="18sp"
-            />
+        <TextView
+                android:hint="@string/date"
+                android:text="@{alarmVM.alarm.startDate.toLocalDate().toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:id="@+id/inputDateAlarm" android:layout_weight="1" android:paddingTop="16dp"
+                android:textSize="18sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="8dp" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintVertical_bias="0.043"/>
 
 
-            <TextView
-                    android:hint="@string/startAlarm"
-                    android:text="@{alarmVM.alarm.startDate.toLocalTime().toString()}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:ems="10"
-                    android:id="@+id/inputStartAlarm" android:layout_weight="1" android:paddingTop="16dp"
-                    android:textSize="18sp"/>
+        <TextView
+                android:hint="@string/startAlarm"
+                android:text="@{alarmVM.alarm.startDate.toLocalTime().toString()}"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:id="@+id/inputStartAlarm" android:layout_weight="1" android:paddingTop="16dp"
+                android:textSize="18sp" android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/inputDateAlarm" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"/>
 
-            <TextView
-                    android:text="@{alarmVM.alarm.endDate.toLocalTime().toString()}"
-                    android:hint="@string/endAlarm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:ems="10"
-                    android:id="@+id/inputEndAlarm" android:layout_weight="1" android:paddingTop="16dp"
-                    android:textSize="18sp"/>
+        <TextView
+                android:text="@{alarmVM.alarm.endDate.toLocalTime().toString()}"
+                android:hint="@string/endAlarm"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:id="@+id/inputEndAlarm" android:layout_weight="1" android:paddingTop="16dp"
+                android:textSize="18sp" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/inputStartAlarm" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"/>
 
-            <EditText
-                    android:hint="@string/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:text="@{alarmVM.alarm.name}"
-                    android:ems="10"
-                    android:id="@+id/inputNameAlarm" android:layout_weight="1" android:textSize="18sp"
-                    android:paddingTop="16dp"/>
-        </androidx.appcompat.widget.LinearLayoutCompat>
+        <EditText
+                android:hint="@string/name"
+                android:autofillHints="@string/name"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="@{alarmVM.alarm.name}"
+                android:ems="10"
+                android:id="@+id/inputNameAlarm" android:layout_weight="1" android:textSize="18sp"
+                android:paddingTop="16dp" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/inputEndAlarm" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" android:inputType="text"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
