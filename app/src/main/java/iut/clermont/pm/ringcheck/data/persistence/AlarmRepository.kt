@@ -3,6 +3,7 @@ package iut.clermont.pm.ringcheck.data.persistence
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import iut.clermont.pm.ringcheck.data.model.Alarm
+import iut.clermont.pm.ringcheck.data.model.CheckElem
 
 class AlarmRepository(private val alarmDao : AlarmDao) {
 
@@ -11,6 +12,11 @@ class AlarmRepository(private val alarmDao : AlarmDao) {
     @WorkerThread
     suspend fun insert(alarm: Alarm) {
         alarmDao.insert(alarm)
+    }
+
+    @WorkerThread
+    suspend fun insert(checkElem: CheckElem) {
+        alarmDao.insert(checkElem)
     }
 
     @WorkerThread
@@ -26,4 +32,7 @@ class AlarmRepository(private val alarmDao : AlarmDao) {
 
     @WorkerThread
     fun delete(alarmId : Int) = alarmDao.delete(alarmId)
+
+    @WorkerThread
+    fun deleteCheckElem(checkElemId : Int) = alarmDao.deleteCheckElem(checkElemId)
 }

@@ -14,6 +14,9 @@ interface AlarmDao {
     @Insert
     fun insert(alarm : Alarm)
 
+    @Insert
+    fun insert(checkElem : CheckElem)
+
     @Update
     fun update(alarm: Alarm)
 
@@ -31,4 +34,7 @@ interface AlarmDao {
 
     @Query("DELETE FROM alarms WHERE alarm_id =:alarmId")
     fun delete(alarmId : Int)
+
+    @Query("DELETE FROM check_elems WHERE check_elem_id =:checkElemId")
+    fun deleteCheckElem(checkElemId : Int)
 }

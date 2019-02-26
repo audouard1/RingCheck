@@ -59,6 +59,22 @@ class AlarmVM(alarmId : Int = 0) : ViewModel() {
         }
     }
 
+    fun deleteCheckElem(checkElemId : Int) = scope.launch(Dispatchers.IO){
+        alarm.value?.let {
+            if(it.alarmId != 0){
+                repository.deleteCheckElem(checkElemId)
+            }
+        }
+    }
+
+    fun addCheckElem(checkElem : CheckElem) = scope.launch(Dispatchers.IO){
+        alarm.value?.let {
+            if(checkElem.checkElemId == 0){
+                repository.insert(checkElem)
+            }
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         parentJob.cancel()

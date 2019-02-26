@@ -5,11 +5,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import iut.clermont.pm.ringcheck.R
+import iut.clermont.pm.ringcheck.adaptator.AlarmAdaptator
+import iut.clermont.pm.ringcheck.adaptator.CheckElemAdaptator
+import iut.clermont.pm.ringcheck.data.model.CheckElem
 import iut.clermont.pm.ringcheck.databinding.AddRingCheckFragmentBinding
+import iut.clermont.pm.ringcheck.databinding.ListRingChekFragmentBinding
 import iut.clermont.pm.ringcheck.manager.RingCheckManager
 import iut.clermont.pm.ringcheck.ui.ringcheck.pickers.DatePickerFragment
 import iut.clermont.pm.ringcheck.ui.ringcheck.pickers.TimePickerFragment
@@ -39,6 +46,12 @@ class AddRingCheckFragment : Fragment() {
         viewModel = ViewModelProviders.of(this,
             viewModelFactory { AlarmVM(args.alarmId) })
             .get(AlarmVM::class.java)
+    }
+
+    private fun subscribeUi(adapter: CheckElemAdaptator) {
+        viewModel.checkElems.observe(viewLifecycleOwner, Observer { checkElems ->
+            if (checkElems != null) adapter.submitList(checkElems)
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -95,12 +108,17 @@ class AddRingCheckFragment : Fragment() {
         val binding = AddRingCheckFragmentBinding.inflate(inflater)
         binding.alarmVM = viewModel
         binding.lifecycleOwner = this
-        return  binding.root
+        val adapter = CheckElemAdaptator(viewModel)
+        binding.checkElemRecycleView.adapter = adapter
+        subscribeUi(adapter)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        addCheckElem.setOnClickListener {
+            viewModel.addCheckElem(CheckElem(0, "coucou", false, args.alarmId))
+        }
         setDialogFragments()
     }
 
