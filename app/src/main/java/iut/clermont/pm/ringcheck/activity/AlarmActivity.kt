@@ -1,10 +1,12 @@
 package iut.clermont.pm.ringcheck.activity
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import iut.clermont.pm.ringcheck.R
+import iut.clermont.pm.ringcheck.data.persistence.CatRepository
 
 class AlarmActivity : AppCompatActivity() {
 
@@ -12,6 +14,8 @@ class AlarmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm)
     }
+
+
 
 
     override fun onAttachedToWindow() {
