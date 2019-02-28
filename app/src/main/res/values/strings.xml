@@ -9,5 +9,7 @@
     <string name="name">Name</string>
     <string name="action_save">save</string>
     <string name="action_delete">delete</string>
+    <string name="cancelAlarm">Stop</string>
+    <string name="a_cat_image">a cat image</string>
 
 </resources>

@@ -54,6 +54,7 @@ dependencies {
     implementation "com.jakewharton.threetenabp:threetenabp:$rootProject.threetenabpVersion"
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
 
     // Testing dependencies
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
