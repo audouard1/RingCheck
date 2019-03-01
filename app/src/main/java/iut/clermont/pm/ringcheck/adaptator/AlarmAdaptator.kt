@@ -52,7 +52,8 @@ class AlarmAdaptator : ListAdapter<Alarm, AlarmAdaptator.AlarmViewHolder>(AlarmD
         }
     }
     private fun createOnCheckedChangeListener(alarm: Alarm): CompoundButton.OnCheckedChangeListener{
-        return CompoundButton.OnCheckedChangeListener { buttonView, isChecked -> if(isChecked) ringCheckManager.setAlarm(buttonView.context, alarm) }
+        return CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked) ringCheckManager.setAlarm(buttonView.context, alarm) }
         }
     }
 

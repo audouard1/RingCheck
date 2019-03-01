@@ -14,6 +14,10 @@ import iut.clermont.pm.ringcheck.receiver.AlarmReceiver
 
 class RingCheckManager {
 
+    companion object {
+        const val ALARM_ID = "ALARM_ID"
+    }
+
     private var repository: AlarmRepository
 
     init {
@@ -23,7 +27,6 @@ class RingCheckManager {
 
     fun setAlarm(context : Context, alarm : Alarm){
         val TWO_SEC_MILLIS = alarm.startDate.toEpochSecond()*1000
-        val a = System.currentTimeMillis()
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             alarmManager.setAlarmClock(
@@ -31,13 +34,14 @@ class RingCheckManager {
                     TWO_SEC_MILLIS,
                     PendingIntent.getActivity(context, 0, Intent(context, MainActivity::class.java), 0)
                 ),
-                getIntent(context)
+                getIntent(context, alarm.alarmId)
             )
         }
     }
 
-    private fun getIntent(context: Context): PendingIntent {
+    private fun getIntent(context: Context, alarmId : Int): PendingIntent {
         val intent = Intent(context, AlarmReceiver::class.java)
+        intent.putExtra(ALARM_ID, alarmId)
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 }
