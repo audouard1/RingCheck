@@ -14,7 +14,7 @@
 
         <TextView
                 android:hint="@string/date"
-                android:text="@{alarmVM.alarm.startDate.toLocalDate().toString()}"
+                android:text="@{Converters.dateToString(context, alarmVM.alarm.startDate)}"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:ems="10"
@@ -31,7 +31,7 @@
 
         <TextView
                 android:hint="@string/startAlarm"
-                android:text="@{alarmVM.alarm.startDate.toLocalTime().toString()}"
+                android:text="@{Converters.timeToString(context, alarmVM.alarm.startDate)}"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:ems="10"
@@ -41,7 +41,7 @@
                 android:layout_marginStart="8dp"/>
 
         <TextView
-                android:text="@{alarmVM.alarm.endDate.toLocalTime().toString()}"
+                android:text="@{Converters.timeToString(context, alarmVM.alarm.endDate)}"
                 android:hint="@string/endAlarm"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"

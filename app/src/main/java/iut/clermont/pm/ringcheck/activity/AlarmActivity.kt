@@ -24,15 +24,10 @@ class AlarmActivity : AppCompatActivity() {
     }
 
     private var alarmId : Int = 0
-
     private lateinit var viewModel: RingViewModel
-
     private lateinit var ringtone : Ringtone
-
     private val handler = Handler()
-
     private lateinit var runnable : Runnable
-
     private lateinit var vibrator : Vibrator
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,25 +1,20 @@
 package iut.clermont.pm.ringcheck.ui.ringcheck
 
-import android.app.AlarmManager
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import iut.clermont.pm.ringcheck.R
-import iut.clermont.pm.ringcheck.adaptator.AlarmAdaptator
 import iut.clermont.pm.ringcheck.adaptator.CheckElemAdaptator
 import iut.clermont.pm.ringcheck.data.model.CheckElem
 import iut.clermont.pm.ringcheck.databinding.AddRingCheckFragmentBinding
-import iut.clermont.pm.ringcheck.databinding.ListRingChekFragmentBinding
-import iut.clermont.pm.ringcheck.manager.RingCheckManager
 import iut.clermont.pm.ringcheck.ui.ringcheck.pickers.DatePickerFragment
 import iut.clermont.pm.ringcheck.ui.ringcheck.pickers.TimePickerFragment
+import iut.clermont.pm.ringcheck.utils.Converters
 import iut.clermont.pm.ringcheck.utils.DateUtils
 import iut.clermont.pm.ringcheck.utils.viewModelFactory
 import iut.clermont.pm.ringcheck.viewmodel.AlarmVM
@@ -82,19 +77,23 @@ class AddRingCheckFragment : Fragment() {
         if (inputDateAlarm.text.toString() != "" && inputStartAlarm.text.toString() != "") {
             viewModel.alarm.value?.let {
                 it.name = inputNameAlarm.text.toString()
-                it.startDate = DateUtils.convertDateFromView(inputDateAlarm.text.toString())
-                    .plusHours(inputStartAlarm.text.split(":").first().toLong())
-                    .plusMinutes(inputStartAlarm.text.split(":").last().toLong())
-                if (inputEndAlarm.text.toString() != "") {
-                    it.endDate = DateUtils.convertDateFromView(inputDateAlarm.text.toString())
-                        .plusHours(inputEndAlarm.text.split(":").first().toLong())
-                        .plusMinutes(inputEndAlarm.text.split(":").last().toLong())
-                } else {
-                    it.endDate = DateUtils.convertDateFromView(inputDateAlarm.text.toString())
-                        .plusHours(inputStartAlarm.text.split(":").first().toLong())
-                        .plusMinutes(inputStartAlarm.text.split(":").last().toLong().plus(-1))
+                Converters.stringToDateTime(
+                    context,
+                    inputDateAlarm.text.toString() + " " + inputStartAlarm.text.toString()
+                )?.let { startDate ->
+                    it.startDate = startDate
                 }
-
+                if (inputEndAlarm.text.toString() != "") {
+                    Converters.stringToDateTime(
+                        context,
+                        inputDateAlarm.text.toString() + " " + inputEndAlarm.text.toString()
+                    )?.let { endDate -> it.endDate = endDate }
+                } else {
+                    Converters.stringToDateTime(
+                        context,
+                        inputDateAlarm.text.toString() + " " + inputStartAlarm.text.toString()
+                    )?.let { startDate -> it.endDate = startDate.plusSeconds(-1) }
+                }
             }
             viewModel.insertOrUpdate()
             findNavController().popBackStack()
