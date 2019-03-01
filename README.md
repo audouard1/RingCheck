@@ -20,9 +20,16 @@ cette application est un réveil. On peut ajouter autant de réveil que l'on veu
 
 ### Utilisation
 
-#scren List#
+![list](img/list.png)
+
 on ajoute les alarme avec le bouton "plus" en bas à droite, on sélectionne une date, une heure de réveil et une heure de départ( pas encore implémenté, donc fictive).
 On valide l'alarme a l'aide des bouton supérieur dans le menu. Puis on arrive sur la page pour activer les alarmes. Une fois qu'une alarme s'est activé, elle est détruite.
+
+### Screen
+
+![add](img/list.png)
+![add](img/add.png)
+![add](img/ring.png)
 
 ### TODO
 la gestion de la check liste pour l'heure de départ n'est pas encore implémenter.
