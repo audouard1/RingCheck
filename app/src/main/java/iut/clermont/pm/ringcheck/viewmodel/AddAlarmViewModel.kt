@@ -14,62 +14,61 @@ import kotlinx.coroutines.launch
 import org.threeten.bp.ZonedDateTime
 import kotlin.coroutines.CoroutineContext
 
-class AlarmVM(alarmId : Int = 0) : ViewModel() {
+class AddAlarmViewModel(alarmId: Int = 0) : ViewModel() {
     private var parentJob = Job()
     private val coroutineContext: CoroutineContext
         get() = parentJob + Dispatchers.Main
     private val scope = CoroutineScope(coroutineContext)
-    private val repository : AlarmRepository
-    val alarm : LiveData<Alarm>
-    val checkElems : LiveData<List<CheckElem>>
-
+    private val repository: AlarmRepository
+    val alarm: LiveData<Alarm>
+    val checkElems: LiveData<List<CheckElem>>
 
 
     init {
         val alarmDao = RingCheckDatabase.getInstance().alarmDao()
         repository = AlarmRepository(alarmDao)
-        if(alarmId == 0){
+        if (alarmId == 0) {
             val defaultAlarm = MutableLiveData<Alarm>()
             val defaultElems = MutableLiveData<List<CheckElem>>()
-            defaultAlarm.value = Alarm(0,"alarm", ZonedDateTime.now(), ZonedDateTime.now(),false, false)
+            defaultAlarm.value = Alarm(0, "alarm", ZonedDateTime.now(), ZonedDateTime.now(), false, false)
             defaultElems.value = ArrayList<CheckElem>()
             alarm = defaultAlarm
             checkElems = defaultElems
-        }
-        else{
+        } else {
             alarm = repository.getAlarm(alarmId)
             checkElems = repository.getCheckElems(alarmId)
         }
     }
+
     fun insertOrUpdate() = scope.launch(Dispatchers.IO) {
-        alarm.value?.let{
-            if(it.alarmId == 0) {
+        alarm.value?.let {
+            if (it.alarmId == 0) {
                 repository.insert(it)
-            }else{
+            } else {
                 repository.update(it)
             }
         }
     }
 
-    fun deleteAlarm() = scope.launch(Dispatchers.IO){
+    fun deleteAlarm() = scope.launch(Dispatchers.IO) {
         alarm.value?.let {
-            if(it.alarmId != 0){
+            if (it.alarmId != 0) {
                 repository.delete(it.alarmId)
             }
         }
     }
 
-    fun deleteCheckElem(checkElemId : Int) = scope.launch(Dispatchers.IO){
+    fun deleteCheckElem(checkElemId: Int) = scope.launch(Dispatchers.IO) {
         alarm.value?.let {
-            if(it.alarmId != 0){
+            if (it.alarmId != 0) {
                 repository.deleteCheckElem(checkElemId)
             }
         }
     }
 
-    fun addCheckElem(checkElem : CheckElem) = scope.launch(Dispatchers.IO){
+    fun addCheckElem(checkElem: CheckElem) = scope.launch(Dispatchers.IO) {
         alarm.value?.let {
-            if(checkElem.checkElemId == 0){
+            if (checkElem.checkElemId == 0) {
                 repository.insert(checkElem)
             }
         }

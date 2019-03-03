@@ -15,9 +15,8 @@ import iut.clermont.pm.ringcheck.databinding.AddRingCheckFragmentBinding
 import iut.clermont.pm.ringcheck.ui.ringcheck.pickers.DatePickerFragment
 import iut.clermont.pm.ringcheck.ui.ringcheck.pickers.TimePickerFragment
 import iut.clermont.pm.ringcheck.utils.Converters
-import iut.clermont.pm.ringcheck.utils.DateUtils
 import iut.clermont.pm.ringcheck.utils.viewModelFactory
-import iut.clermont.pm.ringcheck.viewmodel.AlarmVM
+import iut.clermont.pm.ringcheck.viewmodel.AddAlarmViewModel
 import kotlinx.android.synthetic.main.add_ring_check_fragment.*
 
 
@@ -33,14 +32,14 @@ class AddRingCheckFragment : Fragment() {
 
     val args: AddRingCheckFragmentArgs by navArgs()
 
-    private lateinit var viewModel: AlarmVM
+    private lateinit var viewModel: AddAlarmViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         viewModel = ViewModelProviders.of(this,
-            viewModelFactory { AlarmVM(args.alarmId) })
-            .get(AlarmVM::class.java)
+            viewModelFactory { AddAlarmViewModel(args.alarmId) })
+            .get(AddAlarmViewModel::class.java)
     }
 
     private fun subscribeUi(adapter: CheckElemAdaptator) {
@@ -105,7 +104,7 @@ class AddRingCheckFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = AddRingCheckFragmentBinding.inflate(inflater)
-        binding.alarmVM = viewModel
+        binding.addAlarmViewModel = viewModel
         binding.lifecycleOwner = this
         val adapter = CheckElemAdaptator(viewModel)
         binding.checkElemRecycleView.adapter = adapter
@@ -145,7 +144,7 @@ class AddRingCheckFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(AlarmVM::class.java)
+        viewModel = ViewModelProviders.of(this).get(AddAlarmViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

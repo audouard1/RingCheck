@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="iut.clermont.pm.ringcheck.utils.Converters"/>
-        <variable name="alarmVM" type="iut.clermont.pm.ringcheck.viewmodel.AlarmVM"/>
+        <variable name="addAlarmViewModel" type="iut.clermont.pm.ringcheck.viewmodel.AddAlarmViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -14,7 +14,7 @@
 
         <TextView
                 android:hint="@string/date"
-                android:text="@{Converters.dateToString(context, alarmVM.alarm.startDate)}"
+                android:text="@{Converters.dateToString(context, addAlarmViewModel.alarm.startDate)}"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:ems="10"
@@ -31,7 +31,7 @@
 
         <TextView
                 android:hint="@string/startAlarm"
-                android:text="@{Converters.timeToString(context, alarmVM.alarm.startDate)}"
+                android:text="@{Converters.timeToString(context, addAlarmViewModel.alarm.startDate)}"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:ems="10"
@@ -41,7 +41,7 @@
                 android:layout_marginStart="8dp"/>
 
         <TextView
-                android:text="@{Converters.timeToString(context, alarmVM.alarm.endDate)}"
+                android:text="@{Converters.timeToString(context, addAlarmViewModel.alarm.endDate)}"
                 android:hint="@string/endAlarm"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
@@ -56,7 +56,7 @@
                 android:autofillHints="@string/name"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="@{alarmVM.alarm.name}"
+                android:text="@{addAlarmViewModel.alarm.name}"
                 android:ems="10"
                 android:id="@+id/inputNameAlarm" android:layout_weight="1" android:textSize="18sp"
                 android:paddingTop="16dp" android:layout_marginTop="8dp"

@@ -9,11 +9,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import iut.clermont.pm.ringcheck.R
 import iut.clermont.pm.ringcheck.data.model.CheckElem
-import iut.clermont.pm.ringcheck.data.persistence.AlarmRepository
 import iut.clermont.pm.ringcheck.databinding.CheckelemRecyclItemBinding
-import iut.clermont.pm.ringcheck.viewmodel.AlarmVM
+import iut.clermont.pm.ringcheck.viewmodel.AddAlarmViewModel
 
-class CheckElemAdaptator(private val alarmVM: AlarmVM) : ListAdapter<CheckElem, CheckElemAdaptator.CheckElemViewHolder>(CheckElemDiffCallback()) {
+class CheckElemAdaptator(private val addAlarmViewModel: AddAlarmViewModel) : ListAdapter<CheckElem, CheckElemAdaptator.CheckElemViewHolder>(CheckElemDiffCallback()) {
 
 
     inner class CheckElemViewHolder(private val binding : CheckelemRecyclItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -43,7 +42,7 @@ class CheckElemAdaptator(private val alarmVM: AlarmVM) : ListAdapter<CheckElem, 
 
     private fun createOnClickListener(checkElemId: Int): View.OnClickListener {
         return View.OnClickListener {
-            alarmVM.deleteCheckElem(checkElemId)
+            addAlarmViewModel.deleteCheckElem(checkElemId)
         }
     }
 }
