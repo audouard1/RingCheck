@@ -10,8 +10,8 @@ class AlarmRepository(private val alarmDao : AlarmDao) {
     val allArarm: LiveData<List<Alarm>> = alarmDao.getAllAlarms()
 
     @WorkerThread
-    suspend fun insert(alarm: Alarm) {
-        alarmDao.insert(alarm)
+    suspend fun insert(alarm: Alarm) : Long{
+        return alarmDao.insert(alarm)
     }
 
     @WorkerThread
@@ -31,7 +31,10 @@ class AlarmRepository(private val alarmDao : AlarmDao) {
     fun getCheckElems(alarmId : Int)= alarmDao.getCheckElems(alarmId)
 
     @WorkerThread
-    fun delete(alarmId : Int) = alarmDao.delete(alarmId)
+    fun delete(alarmId : Int) {
+        alarmDao.deleteAllAlarmeCheckElem(alarmId)
+        alarmDao.delete(alarmId)
+    }
 
     @WorkerThread
     fun deleteCheckElem(checkElemId : Int) = alarmDao.deleteCheckElem(checkElemId)

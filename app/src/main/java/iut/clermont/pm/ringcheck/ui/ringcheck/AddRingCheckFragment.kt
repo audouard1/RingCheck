@@ -1,5 +1,7 @@
 package iut.clermont.pm.ringcheck.ui.ringcheck
 
+import android.R
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -18,6 +20,9 @@ import iut.clermont.pm.ringcheck.utils.Converters
 import iut.clermont.pm.ringcheck.utils.viewModelFactory
 import iut.clermont.pm.ringcheck.viewmodel.AddAlarmViewModel
 import kotlinx.android.synthetic.main.add_ring_check_fragment.*
+import android.content.DialogInterface
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 
 
 class AddRingCheckFragment : Fragment() {
@@ -31,6 +36,9 @@ class AddRingCheckFragment : Fragment() {
     }
 
     val args: AddRingCheckFragmentArgs by navArgs()
+    private var tmpAlarmId: Long = 0
+
+    //private lateinit var elemEditText : EditText
 
     private lateinit var viewModel: AddAlarmViewModel
 
@@ -114,8 +122,11 @@ class AddRingCheckFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //elemEditText = EditText(context)
         addCheckElem.setOnClickListener {
+            // showAddElemDialog()
             viewModel.addCheckElem(CheckElem(0, "coucou", false, args.alarmId))
+
         }
         setDialogFragments()
     }
@@ -175,6 +186,19 @@ class AddRingCheckFragment : Fragment() {
             .append("/")
             .append(String.format("%02d", data?.getIntExtra("YEAR", 1)))
     }
+
+    /*private fun showAddElemDialog() {
+        context?.let {
+            val dialog = AlertDialog.Builder(it)
+                .setTitle("new not forget task")
+                .setView(elemEditText)
+                .setPositiveButton("Add"
+                ) { _, _ -> val elem = elemEditText.text.toString() }
+                .setNegativeButton("Cancel", null)
+                .create()
+            dialog.show()
+        }
+    }*/
 
 
 }

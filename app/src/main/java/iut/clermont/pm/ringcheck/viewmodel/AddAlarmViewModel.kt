@@ -20,7 +20,7 @@ class AddAlarmViewModel(alarmId: Int = 0) : ViewModel() {
         get() = parentJob + Dispatchers.Main
     private val scope = CoroutineScope(coroutineContext)
     private val repository: AlarmRepository
-    val alarm: LiveData<Alarm>
+    var alarm: LiveData<Alarm>
     val checkElems: LiveData<List<CheckElem>>
 
 
@@ -43,7 +43,8 @@ class AddAlarmViewModel(alarmId: Int = 0) : ViewModel() {
     fun insertOrUpdate() = scope.launch(Dispatchers.IO) {
         alarm.value?.let {
             if (it.alarmId == 0) {
-                repository.insert(it)
+                var id = repository.insert(it)
+                alarm = repository.getAlarm(id.toInt())
             } else {
                 repository.update(it)
             }

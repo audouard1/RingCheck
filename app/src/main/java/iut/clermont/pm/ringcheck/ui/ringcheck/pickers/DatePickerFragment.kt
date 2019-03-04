@@ -32,7 +32,5 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
             }
             return it.onActivityResult(300,RESULT_OK,intent)
         }
-
-
     }
 }
