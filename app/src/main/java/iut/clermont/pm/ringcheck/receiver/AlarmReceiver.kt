@@ -12,6 +12,7 @@ class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val ring = Intent(context, AlarmActivity::class.java)
         ring.putExtra(RingCheckManager.ALARM_ID,intent.getIntExtra(RingCheckManager.ALARM_ID,0))
+        ring.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //ring.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(ring)
     }
